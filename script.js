@@ -38,10 +38,23 @@ function calcular() {
     melhorCombustivel = "Ambos têm o mesmo custo";
   }
 
-  // 7. Mostrar resultado. Mostrando o resultado final para o usuário
-  document.getElementById("resultado").innerHTML = `
-    <p><strong>Melhor opção:</strong> ${melhorCombustivel}</p>
-    <p>Etanol: ${litrosEtanol.toFixed(2)} litros - R$ ${totalEtanol.toFixed(2)}</p>
-    <p>Gasolina: ${litrosGasolina.toFixed(2)} litros - R$ ${totalGasolina.toFixed(2)}</p>
-  `;
+// Contador de acessos invisível usando CountAPI
+fetch('https://api.countapi.xyz/hit/fabrizzio-site/visitas')
+  .then(res => res.json())
+  .then(data => {
+    console.log("Contador de visitas (visível apenas no console):", data.value);
+
+    // Mostra no site só se estiver rodando localmente (localhost)
+    if (
+      location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname.includes("fabrizzio") // seu domínio personalizado
+    ) {
+      const divContador = document.getElementById("contador");
+      divContador.style.display = "block";
+      divContador.innerText = `Total de acessos: ${data.value}`;
+    }
+  });
+
+
 }
