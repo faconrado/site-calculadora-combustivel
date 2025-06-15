@@ -1,0 +1,40 @@
+<!-- Informa ao navegador que o documento está usando HTML5, que é a versão atual do padrão HTML. -->
+<!DOCTYPE html>
+
+<!-- Abre o elemento raiz do HTML. O atributo lang="pt-BR" indica que o conteúdo está em português do Brasil -->
+<html lang="pt-BR">
+
+
+<head> <!-- Configurações da página (charset, título, responsivo). -->
+  <meta charset="UTF-8" /> <!-- Garante que o navegador interprete acentos e caracteres especiais corretamente. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Faz com que o site fique responsivo (ou seja, se adapta à largura da tela em celulares). -->
+  <title>Calculadora de Combustível</title> <!-- Define o título da aba no navegador. -->
+  <link rel="stylesheet" href="style.css"> <!-- Ligando o CSS com o index.html. -->
+</head>
+
+ 
+<body> <!-- Tudo que aparece visualmente pro usuário vai dentro de <body>.-->
+    <div class="container"> <!-- Criação de uma "caixa branca" com sombra e bordar arredondadas. -->
+        <h1>Calculadora de Combustível</h1> <!-- Títudo principal da página. É o que o usuário vê logo de cara. -->
+
+<!-- Entrada que o usuário colocará os valores -->
+  
+  <label>Preço do Etanol (R$): <input type="number" id="precoEtanol" step="0.01"></label><br>
+  <label>Preço da Gasolina (R$): <input type="number" id="precoGasolina" step="0.01"></label><br>
+  
+  <label>Autonomia com Etanol (km/l): <input type="number" id="autonomiaEtanol" step="0.1"></label><br>
+  <label>Autonomia com Gasolina (km/l): <input type="number" id="autonomiaGasolina" step="0.1"></label><br>
+  
+  <label>Distância a percorrer (km): <input type="number" id="distancia" step="1"></label><br><br>
+  
+  <button onclick="calcular()">Calcular</button> <!-- Botão para efetuar o calculo. 
+
+<!-- Onde saíra o resultado do calculo. -->
+
+  <h2>Resultado:</h2>
+  <div id="resultado"></div>
+  </div>
+
+  <script src="script.js"></script> <!-- Ligação com o JavaScript. Tudo o que estiver no script.js será carregado e executado ao abrir a página. -->
+</body>
+</html>
