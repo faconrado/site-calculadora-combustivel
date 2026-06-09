@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
-  padding: 20px;
+  padding: 40px 20px; /* 40px vertical, 20px horizontal */
   max-width: 600px;
   margin: auto;
 }
@@ -9,6 +9,13 @@ body {
 h1, h2 {
   color: #333;
   text-align: center;
+}
+
+.container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 label {
@@ -23,6 +30,7 @@ input {
   margin-bottom: 10px;
   border: 1px solid #aaa;
   border-radius: 5px;
+  box-sizing: border-box; /* Garante que o padding não quebre a largura de 100% */
 }
 
 button {
@@ -34,6 +42,7 @@ button {
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.2s ease; /* Transição suave no hover */
 }
 
 button:hover {
@@ -47,19 +56,5 @@ button:hover {
   margin-top: 20px;
   border: 1px solid #ccc;
   font-size: 16px;
-}
-
-.container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
-    padding: 40px;
-    max-width: 600px;
-    margin: auto;
+  line-height: 1.5; /* Melhora o espaçamento entre as linhas do resultado */
 }

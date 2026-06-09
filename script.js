@@ -1,34 +1,34 @@
 function calcular() {
-  // 1. Pegar os valores digitados. Pegando os valores dos campos preenchidos pelo usuário
+  // 1. Pegar os valores digitados nos campos
   const precoEtanol = parseFloat(document.getElementById("precoEtanol").value);
   const precoGasolina = parseFloat(document.getElementById("precoGasolina").value);
   const autonomiaEtanol = parseFloat(document.getElementById("autonomiaEtanol").value);
   const autonomiaGasolina = parseFloat(document.getElementById("autonomiaGasolina").value);
   const distancia = parseFloat(document.getElementById("distancia").value);
+  
+  const elementoResultado = document.getElementById("resultado");
 
-  // 2. Verificar se os valores estão válidos. Verificando se todos os campos foram preenchidos corretamente
+  // 2. Verificar se os valores são válidos
   if (
     isNaN(precoEtanol) || isNaN(precoGasolina) ||
     isNaN(autonomiaEtanol) || isNaN(autonomiaGasolina) ||
     isNaN(distancia)
   ) {
-    document.getElementById("resultado").innerHTML = "Por favor, preencha todos os campos corretamente.";
-    return; // encerra a função se algo estiver inválido
+    elementoResultado.textContent = "Por favor, preencha todos os campos corretamente com números.";
+    return; 
   }
 
-  // 3. Cálculo do custo por km. Calculando o custo por km de cada combustível
+  // 3. Cálculos de custo por km e totais
   const custoPorKmEtanol = precoEtanol / autonomiaEtanol;
   const custoPorKmGasolina = precoGasolina / autonomiaGasolina;
 
-  // 4. Cálculo do total a gastar. Calculando quanto o usuário vai gastar no total com cada combustível
   const totalEtanol = custoPorKmEtanol * distancia;
   const totalGasolina = custoPorKmGasolina * distancia;
 
-  // 5. Cálculo dos litros necessários. Calculando quantos litros serão necessários
   const litrosEtanol = distancia / autonomiaEtanol;
   const litrosGasolina = distancia / autonomiaGasolina;
 
-  // 6. Decidir qual compensa. Verificando qual combustível compensa mais
+  // 4. Decidir qual compensa mais
   let melhorCombustivel;
   if (totalEtanol < totalGasolina) {
     melhorCombustivel = "Etanol";
@@ -38,23 +38,11 @@ function calcular() {
     melhorCombustivel = "Ambos têm o mesmo custo";
   }
 
-// Contador de acessos invisível usando CountAPI
-fetch('https://api.countapi.xyz/hit/fabrizzio-site/visitas')
-  .then(res => res.json())
-  .then(data => {
-    console.log("Contador de visitas (visível apenas no console):", data.value);
-
-    // Mostra no site só se estiver rodando localmente (localhost)
-    if (
-      location.hostname === "localhost" ||
-      location.hostname === "127.0.0.1" ||
-      location.hostname.includes("fabrizzio") // seu domínio personalizado
-    ) {
-      const divContador = document.getElementById("contador");
-      divContador.style.display = "block";
-      divContador.innerText = `Total de acessos: ${data.value}`;
-    }
-  });
-
-
+  // 5. EXIBIR O RESULTADO NA TELA (O que faltava)
+  elementoResultado.innerHTML = `
+    <strong>Recomendação: ${melhorCombustivel}</strong><br><br>
+    Distância informada: ${distancia} km<br>
+    <strong>Gasto com Etanol:</strong> R$ ${totalEtanol.toFixed(2)} (${litrosEtanol.toFixed(1)}L)<br>
+    <strong>Gasto com Gasolina:</strong> R$ ${totalGasolina.toFixed(2)} (${litrosGasolina.toFixed(1)}L)
+  `;
 }
